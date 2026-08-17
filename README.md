@@ -1,16 +1,16 @@
 # DSH Kit
 
-> 100+ Cordis plugins for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+> 102 Cordis plugins for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 
-DSH Kit 为 DeepSeek Harness 提供 100+ 开箱即用的 Cordis 插件，覆盖网页搜索、社交媒体、商业情报、电商、加密货币、多模态 AI 等领域。
+DSH Kit 为 DeepSeek Harness 提供 102 个开箱即用的 Cordis 插件，覆盖网页搜索、社交媒体、商业情报、电商、加密货币、多模态 AI、插件商店等领域。
 
 ## 安装
 
 ```bash
 # 1. 确保已安装 DeepSeek Harness
 # 2. 安装插件
-pnpm add @deepseek-ai/dsh-plugin-web-search
-pnpm add @deepseek-ai/dsh-plugin-twitter-search
+pnpm add @sandbaseai/dsh-plugin-web-search
+pnpm add @sandbaseai/dsh-plugin-twitter-search
 # ... 按需安装
 ```
 
@@ -18,6 +18,8 @@ pnpm add @deepseek-ai/dsh-plugin-twitter-search
 
 | 类别 | 数量 | 示例 |
 |------|------|------|
+| 🏪 插件商店 | 1 | `store_search`, `store_catalog`, `store_install` |
+| 🤖 DeepSeek Chat | 1 | `deepseek_chat`, `deepseek_reason`, `deepseek_code` |
 | 🌐 网页搜索 | 10 | `web_search`, `web_fetch`, `web_screenshot` |
 | 📱 社交媒体 | 16 | `twitter_search`, `instagram_profile`, `tiktok_video` |
 | 🏢 商业情报 | 12 | `company_search`, `company_enrich`, `pep_check` |
@@ -35,14 +37,18 @@ pnpm add @deepseek-ai/dsh-plugin-twitter-search
 在 `cordis.patch.yml` 中启用插件：
 
 ```yaml
-- name: '@deepseek-ai/dsh-plugin-web-search'
+- name: '@sandbaseai/dsh-plugin-store'
+  config:
+    enabled: true
+
+- name: '@sandbaseai/dsh-plugin-deepseek-chat'
+  config:
+    enabled: true
+
+- name: '@sandbaseai/dsh-plugin-web-search'
   config:
     enabled: true
     timeoutMs: 30000
-
-- name: '@deepseek-ai/dsh-plugin-github-profile'
-  config:
-    enabled: true
 ```
 
 ## 配置 API Key
