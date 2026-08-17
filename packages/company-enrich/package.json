@@ -27,19 +27,19 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@deepseek-ai/cordis": ">=4.0.1",
-    "@deepseek-ai/dsh-web": ">=0.0.1-rc.1",
-    "@deepseek-ai/dsh-tools": ">=0.0.1-rc.1",
-    "@deepseek-ai/dsh-system-prompt": ">=0.0.1-rc.1"
+    "@deepseek-ai/cordis": "workspace:^",
+    "@deepseek-ai/dsh-web": "workspace:^",
+    "@deepseek-ai/dsh-tools": "workspace:^",
+    "@deepseek-ai/dsh-system-prompt": "workspace:^"
   },
   "dependencies": {
-    "@deepseek-ai/schemastery": ">=3.18.1",
+    "@deepseek-ai/schemastery": "workspace:^",
     "@sandbaseai/dsh-plugin-shared": "workspace:^"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": ">=4.0.1",
-    "@deepseek-ai/dsh-web": ">=0.0.1-rc.1",
-    "@deepseek-ai/dsh-tools": ">=0.0.1-rc.1",
-    "@deepseek-ai/dsh-system-prompt": ">=0.0.1-rc.1"
+    "@deepseek-ai/cordis": "workspace:^",
+    "@deepseek-ai/dsh-web": "workspace:^",
+    "@deepseek-ai/dsh-tools": "workspace:^",
+    "@deepseek-ai/dsh-system-prompt": "workspace:^"
   }
 }
