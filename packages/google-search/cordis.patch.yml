@@ -1,0 +1,5 @@
+# dsh-plugin-google-search — Perform a Google search and return organic results.
+- name: '@sandbaseai/dsh-plugin-google-search'
+  config:
+    enabled: true
+    timeoutMs: 30000

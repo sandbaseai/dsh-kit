@@ -1,0 +1,5 @@
+# dsh-plugin-pep-check — Check if a person is a Politically Exposed Person (PEP) or on sanctions lists.
+- name: '@sandbaseai/dsh-plugin-pep-check'
+  config:
+    enabled: true
+    timeoutMs: 30000

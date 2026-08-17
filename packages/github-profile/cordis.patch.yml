@@ -1,0 +1,5 @@
+# dsh-plugin-github-profile — Get GitHub user profile and repository information.
+- name: '@sandbaseai/dsh-plugin-github-profile'
+  config:
+    enabled: true
+    timeoutMs: 30000

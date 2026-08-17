@@ -1,0 +1,5 @@
+# dsh-plugin-flight-status — Check real-time flight status by flight number.
+- name: '@sandbaseai/dsh-plugin-flight-status'
+  config:
+    enabled: true
+    timeoutMs: 30000

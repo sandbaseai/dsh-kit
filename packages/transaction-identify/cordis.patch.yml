@@ -1,0 +1,5 @@
+# dsh-plugin-transaction-identify — Identify and extract transaction details from e-commerce order confirmation pages.
+- name: '@sandbaseai/dsh-plugin-transaction-identify'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-image-edit — Edit images: erase objects, inpaint, or modify specific regions.
+- name: '@sandbaseai/dsh-plugin-image-edit'
+  config:
+    enabled: true
+    timeoutMs: 30000

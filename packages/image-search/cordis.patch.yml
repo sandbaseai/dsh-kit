@@ -1,0 +1,5 @@
+# dsh-plugin-image-search — Search for images on the web.
+- name: '@sandbaseai/dsh-plugin-image-search'
+  config:
+    enabled: true
+    timeoutMs: 30000

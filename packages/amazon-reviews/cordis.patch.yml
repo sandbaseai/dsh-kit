@@ -1,0 +1,5 @@
+# dsh-plugin-amazon-reviews — Get customer reviews for an Amazon product across regions.
+- name: '@sandbaseai/dsh-plugin-amazon-reviews'
+  config:
+    enabled: true
+    timeoutMs: 30000

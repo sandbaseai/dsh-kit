@@ -1,0 +1,5 @@
+# dsh-plugin-company-enrich — Enrich company data with size, revenue, technologies, and more.
+- name: '@sandbaseai/dsh-plugin-company-enrich'
+  config:
+    enabled: true
+    timeoutMs: 30000

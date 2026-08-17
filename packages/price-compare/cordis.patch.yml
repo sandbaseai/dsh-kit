@@ -1,0 +1,5 @@
+# dsh-plugin-price-compare — Compare prices for a product across multiple retailers.
+- name: '@sandbaseai/dsh-plugin-price-compare'
+  config:
+    enabled: true
+    timeoutMs: 30000

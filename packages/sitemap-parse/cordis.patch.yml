@@ -1,0 +1,5 @@
+# dsh-plugin-sitemap-parse — Parse a sitemap.xml to extract all page URLs.
+- name: '@sandbaseai/dsh-plugin-sitemap-parse'
+  config:
+    enabled: true
+    timeoutMs: 30000

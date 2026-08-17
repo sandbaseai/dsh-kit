@@ -1,0 +1,5 @@
+# dsh-plugin-linkedin-profile — Search LinkedIn profiles by name.
+- name: '@sandbaseai/dsh-plugin-linkedin-profile'
+  config:
+    enabled: true
+    timeoutMs: 30000

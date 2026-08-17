@@ -1,0 +1,5 @@
+# dsh-plugin-mcp-postgres — Execute SQL queries on a PostgreSQL database via MCP.
+- name: '@sandbaseai/dsh-plugin-mcp-postgres'
+  config:
+    enabled: true
+    timeoutMs: 30000

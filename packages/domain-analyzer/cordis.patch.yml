@@ -1,0 +1,5 @@
+# dsh-plugin-domain-analyzer — Analyze a domain for availability, registration info, and startup potential.
+- name: '@sandbaseai/dsh-plugin-domain-analyzer'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-3d-gen-hunyuan — Generate 3D models from text or images using Tencent Hunyuan3D.
+- name: '@sandbaseai/dsh-plugin-3d-gen-hunyuan'
+  config:
+    enabled: true
+    timeoutMs: 30000

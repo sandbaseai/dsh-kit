@@ -1,0 +1,5 @@
+# dsh-plugin-tts-elevenlabs — Convert text to speech using ElevenLabs with natural voices.
+- name: '@sandbaseai/dsh-plugin-tts-elevenlabs'
+  config:
+    enabled: true
+    timeoutMs: 30000

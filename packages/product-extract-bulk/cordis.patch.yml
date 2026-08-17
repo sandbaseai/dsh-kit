@@ -1,0 +1,5 @@
+# dsh-plugin-product-extract-bulk — Extract structured product data from multiple e-commerce URLs in bulk.
+- name: '@sandbaseai/dsh-plugin-product-extract-bulk'
+  config:
+    enabled: true
+    timeoutMs: 60000

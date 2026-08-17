@@ -1,0 +1,5 @@
+# dsh-plugin-image-gen-ideogram — Generate images with text rendering using Ideogram V3.
+- name: '@sandbaseai/dsh-plugin-image-gen-ideogram'
+  config:
+    enabled: true
+    timeoutMs: 30000

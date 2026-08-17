@@ -1,0 +1,5 @@
+# dsh-plugin-styleguide-extract — Extract design styleguide (colors, fonts, spacing) from a web page.
+- name: '@sandbaseai/dsh-plugin-styleguide-extract'
+  config:
+    enabled: true
+    timeoutMs: 30000

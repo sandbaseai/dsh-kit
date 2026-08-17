@@ -1,0 +1,5 @@
+# dsh-plugin-phone-normalize — Normalize and validate a phone number to international format.
+- name: '@sandbaseai/dsh-plugin-phone-normalize'
+  config:
+    enabled: true
+    timeoutMs: 30000

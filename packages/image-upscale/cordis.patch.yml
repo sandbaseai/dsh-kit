@@ -1,0 +1,5 @@
+# dsh-plugin-image-upscale — Upscale an image to higher resolution with AI enhancement.
+- name: '@sandbaseai/dsh-plugin-image-upscale'
+  config:
+    enabled: true
+    timeoutMs: 30000

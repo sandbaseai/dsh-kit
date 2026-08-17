@@ -1,0 +1,5 @@
+# dsh-plugin-token-price-chart — Get historical token price chart data.
+- name: '@sandbaseai/dsh-plugin-token-price-chart'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-mcp-sentry — Interact with Sentry: query error events, list issues, get stack traces.
+- name: '@sandbaseai/dsh-plugin-mcp-sentry'
+  config:
+    enabled: true
+    timeoutMs: 30000

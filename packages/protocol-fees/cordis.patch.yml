@@ -1,0 +1,5 @@
+# dsh-plugin-protocol-fees — Get fee revenue summary for a DeFi protocol.
+- name: '@sandbaseai/dsh-plugin-protocol-fees'
+  config:
+    enabled: true
+    timeoutMs: 30000

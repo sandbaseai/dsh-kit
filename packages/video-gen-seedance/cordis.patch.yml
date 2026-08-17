@@ -1,0 +1,5 @@
+# dsh-plugin-video-gen-seedance — Generate videos using ByteDance Seedance.
+- name: '@sandbaseai/dsh-plugin-video-gen-seedance'
+  config:
+    enabled: true
+    timeoutMs: 30000

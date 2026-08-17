@@ -1,0 +1,5 @@
+# dsh-plugin-mcp-figma — Interact with Figma: get file info, export components, read designs.
+- name: '@sandbaseai/dsh-plugin-mcp-figma'
+  config:
+    enabled: true
+    timeoutMs: 30000

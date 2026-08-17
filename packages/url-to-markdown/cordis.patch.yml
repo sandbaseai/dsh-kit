@@ -1,0 +1,5 @@
+# dsh-plugin-url-to-markdown — Convert any URL content to clean Markdown format.
+- name: '@sandbaseai/dsh-plugin-url-to-markdown'
+  config:
+    enabled: true
+    timeoutMs: 30000

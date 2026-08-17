@@ -1,0 +1,5 @@
+# dsh-plugin-bg-remove — Remove or replace the background of an image.
+- name: '@sandbaseai/dsh-plugin-bg-remove'
+  config:
+    enabled: true
+    timeoutMs: 30000

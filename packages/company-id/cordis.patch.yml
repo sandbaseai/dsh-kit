@@ -1,0 +1,5 @@
+# dsh-plugin-company-id — Detect company identifiers (LEI, DUNS, tax IDs) from company name.
+- name: '@sandbaseai/dsh-plugin-company-id'
+  config:
+    enabled: true
+    timeoutMs: 30000

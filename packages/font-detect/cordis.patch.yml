@@ -1,0 +1,5 @@
+# dsh-plugin-font-detect — Detect fonts used on a web page.
+- name: '@sandbaseai/dsh-plugin-font-detect'
+  config:
+    enabled: true
+    timeoutMs: 30000

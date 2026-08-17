@@ -1,0 +1,5 @@
+# dsh-plugin-tech-stack-detect — Detect the technology stack used by any website.
+- name: '@sandbaseai/dsh-plugin-tech-stack-detect'
+  config:
+    enabled: true
+    timeoutMs: 30000

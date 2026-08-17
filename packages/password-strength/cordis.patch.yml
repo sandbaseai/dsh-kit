@@ -1,0 +1,5 @@
+# dsh-plugin-password-strength — Check password strength and get improvement suggestions.
+- name: '@sandbaseai/dsh-plugin-password-strength'
+  config:
+    enabled: true
+    timeoutMs: 30000

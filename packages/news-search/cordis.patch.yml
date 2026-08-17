@@ -1,0 +1,5 @@
+# dsh-plugin-news-search — Search Google News for articles matching a query.
+- name: '@sandbaseai/dsh-plugin-news-search'
+  config:
+    enabled: true
+    timeoutMs: 30000

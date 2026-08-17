@@ -1,0 +1,5 @@
+# dsh-plugin-video-gen-kling — Generate videos using Kuaishou Kling AI.
+- name: '@sandbaseai/dsh-plugin-video-gen-kling'
+  config:
+    enabled: true
+    timeoutMs: 30000

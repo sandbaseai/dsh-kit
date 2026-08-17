@@ -1,0 +1,5 @@
+# dsh-plugin-instagram-search — Search Instagram by hashtag or keyword.
+- name: '@sandbaseai/dsh-plugin-instagram-search'
+  config:
+    enabled: true
+    timeoutMs: 30000

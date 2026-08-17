@@ -1,0 +1,5 @@
+# dsh-plugin-us-company-data — Look up US company registration data from official sources.
+- name: '@sandbaseai/dsh-plugin-us-company-data'
+  config:
+    enabled: true
+    timeoutMs: 30000

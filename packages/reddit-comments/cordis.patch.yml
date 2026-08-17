@@ -1,0 +1,5 @@
+# dsh-plugin-reddit-comments — Get comments for a Reddit post.
+- name: '@sandbaseai/dsh-plugin-reddit-comments'
+  config:
+    enabled: true
+    timeoutMs: 30000

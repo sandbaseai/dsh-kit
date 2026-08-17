@@ -1,0 +1,5 @@
+# dsh-plugin-product-extract — Extract structured product information from any e-commerce page.
+- name: '@sandbaseai/dsh-plugin-product-extract'
+  config:
+    enabled: true
+    timeoutMs: 30000

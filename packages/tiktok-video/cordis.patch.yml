@@ -1,0 +1,5 @@
+# dsh-plugin-tiktok-video — Get metadata for a TikTok video by URL or ID.
+- name: '@sandbaseai/dsh-plugin-tiktok-video'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-weather-lookup — Get current weather and forecast for a location.
+- name: '@sandbaseai/dsh-plugin-weather-lookup'
+  config:
+    enabled: true
+    timeoutMs: 30000

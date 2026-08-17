@@ -1,0 +1,5 @@
+# dsh-plugin-chain-tvl — Get current Total Value Locked (TVL) for a blockchain.
+- name: '@sandbaseai/dsh-plugin-chain-tvl'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-web-screenshot — Capture a screenshot of a web page.
+- name: '@sandbaseai/dsh-plugin-web-screenshot'
+  config:
+    enabled: true
+    timeoutMs: 30000

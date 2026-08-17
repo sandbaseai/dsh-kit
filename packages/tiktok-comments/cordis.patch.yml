@@ -1,0 +1,5 @@
+# dsh-plugin-tiktok-comments — Get comments for a TikTok video.
+- name: '@sandbaseai/dsh-plugin-tiktok-comments'
+  config:
+    enabled: true
+    timeoutMs: 30000

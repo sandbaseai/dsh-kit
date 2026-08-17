@@ -1,0 +1,5 @@
+# dsh-plugin-image-gen-seedream — Generate images using ByteDance Seedream 5.0.
+- name: '@sandbaseai/dsh-plugin-image-gen-seedream'
+  config:
+    enabled: true
+    timeoutMs: 30000

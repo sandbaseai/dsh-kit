@@ -1,0 +1,5 @@
+# dsh-plugin-company-jobs — Search for job postings at a specific company.
+- name: '@sandbaseai/dsh-plugin-company-jobs'
+  config:
+    enabled: true
+    timeoutMs: 30000

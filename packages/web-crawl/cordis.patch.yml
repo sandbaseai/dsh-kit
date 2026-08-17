@@ -1,0 +1,5 @@
+# dsh-plugin-web-crawl — Crawl a website and extract pages as Markdown.
+- name: '@sandbaseai/dsh-plugin-web-crawl'
+  config:
+    enabled: true
+    timeoutMs: 30000

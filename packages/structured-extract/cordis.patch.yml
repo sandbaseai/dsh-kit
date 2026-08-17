@@ -1,0 +1,5 @@
+# dsh-plugin-structured-extract — Extract structured data (JSON) from any web page using AI.
+- name: '@sandbaseai/dsh-plugin-structured-extract'
+  config:
+    enabled: true
+    timeoutMs: 30000

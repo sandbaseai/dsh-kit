@@ -1,0 +1,5 @@
+# dsh-plugin-twitter-followers — Get followers list for a Twitter/X account.
+- name: '@sandbaseai/dsh-plugin-twitter-followers'
+  config:
+    enabled: true
+    timeoutMs: 30000

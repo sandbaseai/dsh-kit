@@ -1,0 +1,5 @@
+# dsh-plugin-employee-reviews — Get employee reviews and ratings for a company.
+- name: '@sandbaseai/dsh-plugin-employee-reviews'
+  config:
+    enabled: true
+    timeoutMs: 30000

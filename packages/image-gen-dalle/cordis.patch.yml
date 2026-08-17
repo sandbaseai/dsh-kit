@@ -1,0 +1,5 @@
+# dsh-plugin-image-gen-dalle — Generate images using OpenAI DALL·E 3 with high-quality prompt following.
+- name: '@sandbaseai/dsh-plugin-image-gen-dalle'
+  config:
+    enabled: true
+    timeoutMs: 60000

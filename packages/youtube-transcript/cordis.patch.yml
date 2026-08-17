@@ -1,0 +1,5 @@
+# dsh-plugin-youtube-transcript — Get the transcript/captions for a YouTube video.
+- name: '@sandbaseai/dsh-plugin-youtube-transcript'
+  config:
+    enabled: true
+    timeoutMs: 30000

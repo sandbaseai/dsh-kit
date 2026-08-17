@@ -1,0 +1,5 @@
+# dsh-plugin-linkedin-company — Get employee list for a LinkedIn company page.
+- name: '@sandbaseai/dsh-plugin-linkedin-company'
+  config:
+    enabled: true
+    timeoutMs: 30000

@@ -1,0 +1,5 @@
+# dsh-plugin-stablecoin-mcap — Get stablecoin market cap history for a chain.
+- name: '@sandbaseai/dsh-plugin-stablecoin-mcap'
+  config:
+    enabled: true
+    timeoutMs: 30000

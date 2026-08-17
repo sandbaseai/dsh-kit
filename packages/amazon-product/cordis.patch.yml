@@ -1,0 +1,5 @@
+# dsh-plugin-amazon-product — Get detailed product information from Amazon.
+- name: '@sandbaseai/dsh-plugin-amazon-product'
+  config:
+    enabled: true
+    timeoutMs: 30000

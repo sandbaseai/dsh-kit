@@ -1,0 +1,5 @@
+# dsh-plugin-mcp-jira — Interact with Jira: search issues, get issue details, create issues.
+- name: '@sandbaseai/dsh-plugin-mcp-jira'
+  config:
+    enabled: true
+    timeoutMs: 30000

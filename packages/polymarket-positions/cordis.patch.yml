@@ -1,0 +1,5 @@
+# dsh-plugin-polymarket-positions — Get Polymarket trading positions for an address.
+- name: '@sandbaseai/dsh-plugin-polymarket-positions'
+  config:
+    enabled: true
+    timeoutMs: 30000

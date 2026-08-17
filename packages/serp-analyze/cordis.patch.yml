@@ -1,0 +1,5 @@
+# dsh-plugin-serp-analyze — Analyze Search Engine Results Page (SERP) for a keyword.
+- name: '@sandbaseai/dsh-plugin-serp-analyze'
+  config:
+    enabled: true
+    timeoutMs: 30000

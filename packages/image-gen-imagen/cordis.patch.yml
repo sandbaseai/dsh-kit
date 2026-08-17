@@ -1,0 +1,5 @@
+# dsh-plugin-image-gen-imagen — Generate images using Google Imagen 4.
+- name: '@sandbaseai/dsh-plugin-image-gen-imagen'
+  config:
+    enabled: true
+    timeoutMs: 30000

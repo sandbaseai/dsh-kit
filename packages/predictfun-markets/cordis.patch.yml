@@ -1,0 +1,5 @@
+# dsh-plugin-predictfun-markets — Get PredictFun prediction markets.
+- name: '@sandbaseai/dsh-plugin-predictfun-markets'
+  config:
+    enabled: true
+    timeoutMs: 30000
