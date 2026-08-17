@@ -1,4 +1,6 @@
 packages:
   - packages/*
+  - /Users/liyb/deepseek/deepseek-harness/packages/*/*
+  - /Users/liyb/deepseek/deepseek-harness/vendor/*
 
 linkWorkspacePackages: true

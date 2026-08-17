@@ -39,7 +39,7 @@ export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
 
   void (async () => {
-    const apiKey = await resolveCredential(ctx, 'apify', 'api_key')
+    const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
     const client = createFetchClient({
       baseUrl: 'https://api.sandbase.ai',
       timeoutMs: config.timeoutMs ?? 30000,
@@ -67,10 +67,10 @@ export function apply(ctx: Context, config: Config = {}) {
       },
     },
       output: {
-        schema: { type: 'object' },
-        render: (_args, value) => [{ type: 'text', text: JSON.stringify(value, null, 2) }],
+        schema: { type: 'string' },
+        render: (_args, value) => [{ type: 'text', text: value }],
       },
-      async execute(args, { signal }) {
+      async execute(args, exec) {
         try {
           const params = new URLSearchParams()
           for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
@@ -79,10 +79,11 @@ export function apply(ctx: Context, config: Config = {}) {
             }
           }
           const qs = params.toString()
-          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), signal)
-          return data
+          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), exec.signal)
+          return JSON.stringify(data, null, 2)
         } catch (err) {
           handleUpstreamError(err, 'news_search')
+  throw new Error('unreachable')
         }
       },
     }))

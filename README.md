@@ -47,11 +47,10 @@ pnpm add @deepseek-ai/dsh-plugin-twitter-search
 
 ## 配置 API Key
 
+所有插件统一通过 Sandbase API 调用，只需一个 Key：
+
 ```bash
-export CONTEXT_DEV_API_KEY="your-key"
-export APIFY_API_KEY="your-key"
-export APOLLO_API_KEY="your-key"
-# ... 按需配置
+export SANDBASE_API_KEY="your-sandbase-api-key"
 ```
 
 ## 开发

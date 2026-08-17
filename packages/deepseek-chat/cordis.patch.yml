@@ -1,0 +1,6 @@
+# dsh-plugin-deepseek-chat — Call DeepSeek models (V4 Pro, R1, V3.2) for chat, reasoning, and code generation.
+- name: '@sandbaseai/dsh-plugin-deepseek-chat'
+  config:
+    enabled: true
+    timeoutMs: 120000
+    defaultModel: deepseek-v4-pro
