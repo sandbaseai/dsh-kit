@@ -1,5 +1,7 @@
-# dsh-plugin-twitter-search — Search Twitter/X for tweets matching a query.
-- name: '@sandbaseai/dsh-plugin-twitter-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-twitter-search
+      name: '@sandbaseai/dsh-plugin-twitter-search'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

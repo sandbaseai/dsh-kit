@@ -1,5 +1,7 @@
-# dsh-plugin-image-gen-imagen — Generate images using Google Imagen 4.
-- name: '@sandbaseai/dsh-plugin-image-gen-imagen'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-image-gen-imagen
+      name: '@sandbaseai/dsh-plugin-image-gen-imagen'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

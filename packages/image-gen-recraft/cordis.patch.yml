@@ -1,5 +1,7 @@
-# dsh-plugin-image-gen-recraft — Generate vector illustrations and design assets using Recraft.
-- name: '@sandbaseai/dsh-plugin-image-gen-recraft'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-image-gen-recraft
+      name: '@sandbaseai/dsh-plugin-image-gen-recraft'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

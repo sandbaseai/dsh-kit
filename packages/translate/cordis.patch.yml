@@ -1,5 +1,7 @@
-# dsh-plugin-translate — Translate text between languages.
-- name: '@sandbaseai/dsh-plugin-translate'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-translate
+      name: '@sandbaseai/dsh-plugin-translate'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

@@ -1,5 +1,7 @@
-# dsh-plugin-npm-package — Get NPM/PyPI package information including version, dependencies, and downloads.
-- name: '@sandbaseai/dsh-plugin-npm-package'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-npm-package
+      name: '@sandbaseai/dsh-plugin-npm-package'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

@@ -1,5 +1,7 @@
-# dsh-plugin-token-price-change — Get token price percentage changes over various time periods.
-- name: '@sandbaseai/dsh-plugin-token-price-change'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-token-price-change
+      name: '@sandbaseai/dsh-plugin-token-price-change'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

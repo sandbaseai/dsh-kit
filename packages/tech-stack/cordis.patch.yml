@@ -1,5 +1,7 @@
-# dsh-plugin-tech-stack — Detect the technology stack used by a company's website.
-- name: '@sandbaseai/dsh-plugin-tech-stack'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-tech-stack
+      name: '@sandbaseai/dsh-plugin-tech-stack'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

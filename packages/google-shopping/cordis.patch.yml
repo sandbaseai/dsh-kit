@@ -1,5 +1,7 @@
-# dsh-plugin-google-shopping — Search Google Shopping for products.
-- name: '@sandbaseai/dsh-plugin-google-shopping'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-google-shopping
+      name: '@sandbaseai/dsh-plugin-google-shopping'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

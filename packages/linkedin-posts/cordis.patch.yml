@@ -1,5 +1,7 @@
-# dsh-plugin-linkedin-posts — Get recent posts from a LinkedIn profile.
-- name: '@sandbaseai/dsh-plugin-linkedin-posts'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-linkedin-posts
+      name: '@sandbaseai/dsh-plugin-linkedin-posts'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

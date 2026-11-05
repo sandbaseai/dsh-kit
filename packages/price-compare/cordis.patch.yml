@@ -1,5 +1,7 @@
-# dsh-plugin-price-compare — Compare prices for a product across multiple retailers.
-- name: '@sandbaseai/dsh-plugin-price-compare'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-price-compare
+      name: '@sandbaseai/dsh-plugin-price-compare'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

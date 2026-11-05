@@ -12,19 +12,21 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool } from '@deepseek-ai/dsh-tools'
-import { handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
 
 export const name = 'dsh_plugin_store'
 export const inject = ['tools', 'web'] as const
 
 export interface Config {
+  /** Prefix used to avoid collisions with host tools. */
+  toolPrefix?: string
   enabled?: boolean
   catalogUrl?: string
   timeoutMs?: number
 }
 
 export const Config: z<Config> = z.object({
+  toolPrefix: z.string().default(''),
   enabled: z.boolean().default(true),
   catalogUrl: z.string().default('https://dshpluginleaderboard.com/api/catalog'),
   timeoutMs: z.number().default(30000),
@@ -76,10 +78,10 @@ export function apply(ctx: Context, config: Config = {}) {
 
   const catalogUrl = config.catalogUrl ?? 'https://dshpluginleaderboard.com/api/catalog'
 
-  void (async () => {
+  return (async () => {
     // ── store_search ──
     ctx.tools.register(defineTool({
-      name: 'store_search',
+      name: (config.toolPrefix ?? '') + 'store_search',
       description: 'Search the DSH Plugin Store for plugins. Find plugins by name, description, or category. Returns matching plugins with install instructions.',
       parameters: {
         query: { type: 'string', required: true, description: 'Search query — matches plugin name and description.' },
@@ -124,7 +126,7 @@ export function apply(ctx: Context, config: Config = {}) {
 
     // ── store_catalog ──
     ctx.tools.register(defineTool({
-      name: 'store_catalog',
+      name: (config.toolPrefix ?? '') + 'store_catalog',
       description: 'Browse the full DSH Plugin Store catalog. List all available plugins, optionally filtered by category.',
       parameters: {
         category: { type: 'string', description: 'Filter by category (e.g., "UI Enhancements", "Dev Tools"). Leave empty for all.' },
@@ -168,7 +170,7 @@ export function apply(ctx: Context, config: Config = {}) {
 
     // ── store_install ──
     ctx.tools.register(defineTool({
-      name: 'store_install',
+      name: (config.toolPrefix ?? '') + 'store_install',
       description: 'Get the install instructions for a specific plugin from the DSH Plugin Store.',
       parameters: {
         name: { type: 'string', required: true, description: 'The plugin name (e.g., "dsh-status-rotator") or repository (e.g., "01Virex/dsh-status-rotator").' },

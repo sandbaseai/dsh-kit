@@ -1,5 +1,7 @@
-# dsh-plugin-image-gen-flux — Generate images using Black Forest Labs Flux Pro model.
-- name: '@sandbaseai/dsh-plugin-image-gen-flux'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-image-gen-flux
+      name: '@sandbaseai/dsh-plugin-image-gen-flux'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

@@ -1,5 +1,7 @@
-# dsh-plugin-protocol-tvl — Get Total Value Locked (TVL) for a DeFi protocol.
-- name: '@sandbaseai/dsh-plugin-protocol-tvl'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-protocol-tvl
+      name: '@sandbaseai/dsh-plugin-protocol-tvl'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

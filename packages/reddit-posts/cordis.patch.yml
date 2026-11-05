@@ -1,5 +1,7 @@
-# dsh-plugin-reddit-posts — Search Reddit posts by query or subreddit.
-- name: '@sandbaseai/dsh-plugin-reddit-posts'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-reddit-posts
+      name: '@sandbaseai/dsh-plugin-reddit-posts'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

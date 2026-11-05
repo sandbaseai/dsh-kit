@@ -1,5 +1,7 @@
-# dsh-plugin-chain-historical-tvl — Get historical TVL data for a blockchain.
-- name: '@sandbaseai/dsh-plugin-chain-historical-tvl'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-chain-historical-tvl
+      name: '@sandbaseai/dsh-plugin-chain-historical-tvl'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

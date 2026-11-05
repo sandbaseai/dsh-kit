@@ -1,5 +1,7 @@
-# dsh-plugin-company-news — Search for news articles about a specific company.
-- name: '@sandbaseai/dsh-plugin-company-news'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-company-news
+      name: '@sandbaseai/dsh-plugin-company-news'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

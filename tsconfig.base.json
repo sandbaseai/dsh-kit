@@ -11,6 +11,16 @@
     "declarationMap": true,
     "sourceMap": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": [
+      "node"
+    ],
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "paths": {
+      "@sandbaseai/dsh-plugin-shared": [
+        "./packages/shared/src/index.ts"
+      ]
+    }
   }
 }

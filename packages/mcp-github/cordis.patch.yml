@@ -1,5 +1,7 @@
-# dsh-plugin-mcp-github — Interact with GitHub: search repos, issues, PRs, create issues.
-- name: '@sandbaseai/dsh-plugin-mcp-github'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-mcp-github
+      name: '@sandbaseai/dsh-plugin-mcp-github'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

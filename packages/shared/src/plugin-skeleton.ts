@@ -5,7 +5,8 @@
 
 import type { Context } from '@deepseek-ai/cordis'
 import type z from '@deepseek-ai/schemastery'
-import { defineTool } from '@deepseek-ai/dsh-tools'
+import type { ParameterSchemaSpec, InferValue } from '@deepseek-ai/dsh-tools'
+import { defineTool } from './define-tool.ts'
 import { createFetchClient, type FetchClient } from './fetch-client.ts'
 import { resolveCredential } from './credential-resolver.ts'
 import { handleUpstreamError } from './error-handler.ts'
@@ -29,19 +30,13 @@ export interface PluginDefinition {
   /** API endpoint path (can include {param} placeholders). */
   endpointPath: string
   /** Tool parameters definition. */
-  parameters: Record<string, {
-    type: string
-    required?: boolean
-    description: string
-    default?: unknown
-    enum?: string[]
-  }>
+  parameters: ParameterSchemaSpec
   /** Transform the API response into the tool's return value. */
   transformResponse?: (data: unknown) => unknown
   /** Build the query string or body from args. */
   buildRequest?: (args: Record<string, unknown>) => { path: string; body?: unknown }
   /** Output renderer. */
-  renderOutput?: (args: Record<string, unknown>, value: unknown) => Array<{ type: string; text: string }>
+  renderOutput?: (args: Record<string, unknown>, value: unknown) => Array<{ type: 'text'; text: string }>
 }
 
 /** Plugin config interface. */
@@ -66,26 +61,25 @@ export function createPlugin(def: PluginDefinition) {
     apply(ctx: Context, config: { enabled?: boolean; timeoutMs?: number; apiKey?: string } = {}) {
       if (config.enabled === false) return
 
-      void (async () => {
-        const apiKey = config.apiKey || await resolveCredential(ctx, def.credentialProvider, def.credentialKey ?? 'api_key')
-        const client = createFetchClient({
-          baseUrl: def.baseUrl,
-          timeoutMs: config.timeoutMs ?? def.timeoutMs ?? 30_000,
-          defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-        })
-
+      return (async () => {
         ctx.tools.register(defineTool({
           name: def.toolName,
           description: def.description,
           parameters: def.parameters,
           output: {
-            schema: { type: 'object' },
+            schema: { type: 'json' },
             render: def.renderOutput ?? ((_args, value) => [
               { type: 'text', text: JSON.stringify(value, null, 2) },
             ]),
           },
           async execute(args, { signal }) {
             try {
+              const apiKey = config.apiKey || await resolveCredential(ctx, def.credentialProvider, def.credentialKey ?? 'api_key')
+              const client = createFetchClient({
+                baseUrl: def.baseUrl,
+                timeoutMs: config.timeoutMs ?? def.timeoutMs ?? 30_000,
+                defaultHeaders: { Authorization: `Bearer ${apiKey}` },
+              })
               const { path, body } = def.buildRequest
                 ? def.buildRequest(args as Record<string, unknown>)
                 : { path: def.endpointPath, body: undefined }
@@ -105,7 +99,8 @@ export function createPlugin(def: PluginDefinition) {
                 data = await client.get(qs ? `${path}?${qs}` : path, signal)
               }
 
-              return def.transformResponse ? def.transformResponse(data) : data
+              // defineTool validates the canonical JSON value before rendering it.
+              return (def.transformResponse ? def.transformResponse(data) : data) as InferValue<{ type: 'json' }>
             } catch (err) {
               handleUpstreamError(err, def.toolName)
             }

@@ -1,5 +1,7 @@
-# dsh-plugin-mcp-slack — Interact with Slack: send messages, search channels, list users.
-- name: '@sandbaseai/dsh-plugin-mcp-slack'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-mcp-slack
+      name: '@sandbaseai/dsh-plugin-mcp-slack'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000
