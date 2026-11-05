@@ -1,5 +1,7 @@
-# dsh-plugin-email-validate — Validate an email address for format, domain, and deliverability.
-- name: '@sandbaseai/dsh-plugin-email-validate'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-email-validate
+      name: '@sandbaseai/dsh-plugin-email-validate'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

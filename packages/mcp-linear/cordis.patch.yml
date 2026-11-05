@@ -1,5 +1,7 @@
-# dsh-plugin-mcp-linear — Interact with Linear: search issues, create issues, manage projects.
-- name: '@sandbaseai/dsh-plugin-mcp-linear'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-mcp-linear
+      name: '@sandbaseai/dsh-plugin-mcp-linear'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

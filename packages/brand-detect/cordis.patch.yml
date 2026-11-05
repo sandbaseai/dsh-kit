@@ -1,5 +1,7 @@
-# dsh-plugin-brand-detect — Detect brand information from a web page.
-- name: '@sandbaseai/dsh-plugin-brand-detect'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-brand-detect
+      name: '@sandbaseai/dsh-plugin-brand-detect'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

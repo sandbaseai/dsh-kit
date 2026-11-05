@@ -1,5 +1,7 @@
-# dsh-plugin-instagram-posts — Get recent posts from an Instagram profile.
-- name: '@sandbaseai/dsh-plugin-instagram-posts'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-instagram-posts
+      name: '@sandbaseai/dsh-plugin-instagram-posts'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

@@ -1,5 +1,7 @@
-# dsh-plugin-video-gen-veo — Generate videos using Google Veo 3.
-- name: '@sandbaseai/dsh-plugin-video-gen-veo'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-video-gen-veo
+      name: '@sandbaseai/dsh-plugin-video-gen-veo'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

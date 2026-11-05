@@ -1,5 +1,7 @@
-# dsh-plugin-timezone-lookup — Look up timezone information for a location.
-- name: '@sandbaseai/dsh-plugin-timezone-lookup'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-timezone-lookup
+      name: '@sandbaseai/dsh-plugin-timezone-lookup'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

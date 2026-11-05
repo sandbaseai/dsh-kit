@@ -44,8 +44,10 @@ describe('Plugin smoke tests', () => {
     expect(src).toContain('export const Config')
     expect(src).toContain('export function apply')
     expect(src).toContain('defineTool')
-    expect(src).toContain('resolveCredential')
-    expect(src).toContain("'sandbase'")
+    if (dir !== 'dsh-store') {
+      expect(src).toContain('resolveCredential')
+      expect(src).toContain("'sandbase'")
+    }
   })
 
   // Test that cordis.patch.yml is valid YAML structure
@@ -53,13 +55,14 @@ describe('Plugin smoke tests', () => {
     const yml = fs.readFileSync(path.join(PLUGINS_DIR, dir, 'cordis.patch.yml'), 'utf-8')
     expect(yml).toContain('@sandbaseai/dsh-plugin-')
     expect(yml).toContain('enabled: true')
-    expect(yml).toContain('timeoutMs:')
+    expect(yml).toContain('- insert:')
+    if (dir !== 'dsh-store') expect(yml).toContain('timeoutMs:')
   })
 })
 
 describe('Plugin count', () => {
-  it('has exactly 101 plugins (excluding shared)', () => {
-    expect(pluginDirs.length).toBe(101)
+  it('has exactly 102 plugins (excluding shared)', () => {
+    expect(pluginDirs.length).toBe(102)
   })
 })
 

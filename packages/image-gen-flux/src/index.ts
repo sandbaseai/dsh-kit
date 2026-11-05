@@ -10,8 +10,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool } from '@deepseek-ai/dsh-tools'
-import { createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
 
 /** Cordis plugin name used by loader diagnostics. */
 export const name = 'dsh_plugin_image_gen_flux'
@@ -21,6 +20,8 @@ export const inject = ['tools', 'web', 'systemPrompt'] as const
 
 /** Plugin configuration. */
 export interface Config {
+  /** Prefix used to avoid collisions with host tools. */
+  toolPrefix?: string
   /** Enable this plugin. Defaults to true. */
   enabled?: boolean
   /** Request timeout in milliseconds. */
@@ -28,6 +29,7 @@ export interface Config {
 }
 
 export const Config: z<Config> = z.object({
+  toolPrefix: z.string().default(''),
   enabled: z.boolean().default(true),
   timeoutMs: z.number().default(30000),
 })
@@ -40,16 +42,9 @@ export const Config: z<Config> = z.object({
 export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
 
-  void (async () => {
-    const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
-    const client = createFetchClient({
-      baseUrl: 'https://api.sandbase.ai',
-      timeoutMs: config.timeoutMs ?? 30000,
-      defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-    })
-
+  return (async () => {
     ctx.tools.register(defineTool({
-      name: 'image_gen_flux',
+      name: (config.toolPrefix ?? '') + 'image_gen_flux',
       description: 'Generate images using Black Forest Labs Flux Pro model.',
       parameters: {
       prompt: {
@@ -76,6 +71,12 @@ export function apply(ctx: Context, config: Config = {}) {
       },
       async execute(args, exec) {
         try {
+          const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
+          const client = createFetchClient({
+            baseUrl: 'https://api.sandbase.ai',
+            timeoutMs: config.timeoutMs ?? 30000,
+            defaultHeaders: { Authorization: `Bearer ${apiKey}` },
+          })
           const params = new URLSearchParams()
           for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
             if (value !== undefined && value !== null && value !== '') {

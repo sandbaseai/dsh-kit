@@ -1,5 +1,7 @@
-# dsh-plugin-company-search — Search for companies by name, industry, or location.
-- name: '@sandbaseai/dsh-plugin-company-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-company-search
+      name: '@sandbaseai/dsh-plugin-company-search'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

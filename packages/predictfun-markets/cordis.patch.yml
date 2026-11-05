@@ -1,5 +1,7 @@
-# dsh-plugin-predictfun-markets — Get PredictFun prediction markets.
-- name: '@sandbaseai/dsh-plugin-predictfun-markets'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-predictfun-markets
+      name: '@sandbaseai/dsh-plugin-predictfun-markets'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

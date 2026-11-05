@@ -1,5 +1,7 @@
-# dsh-plugin-tiktok-profile — Get TikTok profile data and post history.
-- name: '@sandbaseai/dsh-plugin-tiktok-profile'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-tiktok-profile
+      name: '@sandbaseai/dsh-plugin-tiktok-profile'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

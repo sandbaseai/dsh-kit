@@ -1,5 +1,7 @@
-# dsh-plugin-mcp-notion — Interact with Notion: search pages, read databases, create pages.
-- name: '@sandbaseai/dsh-plugin-mcp-notion'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-mcp-notion
+      name: '@sandbaseai/dsh-plugin-mcp-notion'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

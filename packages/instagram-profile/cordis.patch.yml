@@ -1,5 +1,7 @@
-# dsh-plugin-instagram-profile — Get Instagram profile data including bio, followers, and recent posts.
-- name: '@sandbaseai/dsh-plugin-instagram-profile'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-instagram-profile
+      name: '@sandbaseai/dsh-plugin-instagram-profile'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

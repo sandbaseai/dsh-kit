@@ -1,5 +1,7 @@
-# dsh-plugin-youtube-search — Search YouTube for videos.
-- name: '@sandbaseai/dsh-plugin-youtube-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-youtube-search
+      name: '@sandbaseai/dsh-plugin-youtube-search'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

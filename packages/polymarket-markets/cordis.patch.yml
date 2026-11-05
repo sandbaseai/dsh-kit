@@ -1,5 +1,7 @@
-# dsh-plugin-polymarket-markets — Get current Polymarket prediction markets and odds.
-- name: '@sandbaseai/dsh-plugin-polymarket-markets'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-polymarket-markets
+      name: '@sandbaseai/dsh-plugin-polymarket-markets'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

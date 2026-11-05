@@ -4,15 +4,34 @@
 
 DSH Kit 为 DeepSeek Harness 提供 102 个开箱即用的 Cordis 插件，覆盖网页搜索、社交媒体、商业情报、电商、加密货币、多模态 AI、插件商店等领域。
 
-## 安装
+## 从源码构建和安装
+
+需要 Node.js 22.19+ 和 pnpm 11.22.0。依赖来自公开 npm 包。
 
 ```bash
-# 1. 确保已安装 DeepSeek Harness
-# 2. 安装插件
-pnpm add @sandbaseai/dsh-plugin-web-search
-pnpm add @sandbaseai/dsh-plugin-twitter-search
-# ... 按需安装
+git clone https://github.com/sandbaseai/dsh-kit.git
+cd dsh-kit
+pnpm install --frozen-lockfile
+pnpm typecheck
+pnpm pack:plugins
+pnpm test
 ```
+
+构建产物位于 `dist/packages/`。使用 Desktop 自带的 `dsh` CLI 安装需要的包，例如：
+
+```bash
+dsh plugin --profile desktop add -w ./dist/packages/sandbaseai-dsh-plugin-web-search-0.1.0.tgz
+```
+
+Web 用户使用 `--profile web`，自定义 profile 使用其名称。每个工具包自带
+`dsh.bundle` 清单、Cordis patch、运行代码和类型声明，共享实现已打包到工具中。
+包内配置默认使用 `sandbase_` 工具名前缀，避免与 DSH 内置的 `web_search`、
+`web_fetch` 等工具冲突。直接使用插件 API 时可通过 `toolPrefix` 配置前缀，默认空字符串。
+
+这些本地 tarball 可用于安装验证，npm 发布状态需另行确认。
+
+`packages/dsh-store` 与独立的 `sandbaseai/dsh-plugin-store` 使用同一包名。
+已安装独立商店时，请跳过 Kit 中的同名商店包，避免覆盖。
 
 ## 插件分类
 
@@ -34,22 +53,9 @@ pnpm add @sandbaseai/dsh-plugin-twitter-search
 
 ## 使用
 
-在 `cordis.patch.yml` 中启用插件：
-
-```yaml
-- name: '@sandbaseai/dsh-plugin-store'
-  config:
-    enabled: true
-
-- name: '@sandbaseai/dsh-plugin-deepseek-chat'
-  config:
-    enabled: true
-
-- name: '@sandbaseai/dsh-plugin-web-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
-```
+通过 `dsh plugin --profile <name> add -w <tarball>` 安装时，DSH 会加载包内的
+`cordis.patch.yml`。安装后重启对应 profile。构建与加载测试覆盖包结构和工具注册，
+实际数据查询及模型生成仍需有效凭据和逐项服务验证。
 
 ## 配置 API Key
 

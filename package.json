@@ -2,18 +2,25 @@
   "name": "dsh-plugins",
   "version": "0.1.0",
   "private": true,
-  "description": "100+ Cordis plugins for DeepSeek Harness — web search, social media, business intelligence, e-commerce, crypto, multimodal AI, and more.",
+  "description": "100+ Cordis plugins for DeepSeek Harness \u2014 web search, social media, business intelligence, e-commerce, crypto, multimodal AI, and more.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sandbaseai/dsh-kit.git"
   },
   "scripts": {
-    "build": "pnpm -r run build",
-    "typecheck": "tsc -b",
-    "lint": "oxlint .",
-    "test": "vitest run"
+    "build": "tsc -p tsconfig.build.json && node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "pack:plugins": "pnpm build && node scripts/pack.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.19.0"
+  },
+  "packageManager": "pnpm@11.22.0",
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "typescript": "~5.9.3",
+    "esbuild": "^0.25.12",
+    "vitest": "^3.2.4"
   }
 }

@@ -1,5 +1,7 @@
-# dsh-plugin-image-gen-sd — Generate images using Stable Diffusion.
-- name: '@sandbaseai/dsh-plugin-image-gen-sd'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-image-gen-sd
+      name: '@sandbaseai/dsh-plugin-image-gen-sd'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

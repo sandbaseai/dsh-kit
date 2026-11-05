@@ -1,5 +1,7 @@
-# dsh-plugin-google-maps-reviews — Get Google Maps reviews for a place.
-- name: '@sandbaseai/dsh-plugin-google-maps-reviews'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-google-maps-reviews
+      name: '@sandbaseai/dsh-plugin-google-maps-reviews'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

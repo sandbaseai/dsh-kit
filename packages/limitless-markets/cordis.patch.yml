@@ -1,5 +1,7 @@
-# dsh-plugin-limitless-markets — Get Limitless prediction markets.
-- name: '@sandbaseai/dsh-plugin-limitless-markets'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-limitless-markets
+      name: '@sandbaseai/dsh-plugin-limitless-markets'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

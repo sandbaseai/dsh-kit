@@ -1,5 +1,7 @@
-# dsh-plugin-facebook-ads — Search Facebook Ads Library for active advertisements by keyword or advertiser.
-- name: '@sandbaseai/dsh-plugin-facebook-ads'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-facebook-ads
+      name: '@sandbaseai/dsh-plugin-facebook-ads'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

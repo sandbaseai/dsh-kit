@@ -1,5 +1,7 @@
-# dsh-plugin-store — Plugin marketplace inside DSH.
-- name: '@sandbaseai/dsh-plugin-store'
-  config:
-    enabled: true
-    catalogUrl: https://dshpluginleaderboard.com/api/catalog
+- insert:
+    - id: sandbase-kit-dsh-store
+      name: '@sandbaseai/dsh-plugin-store'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        catalogUrl: https://dshpluginleaderboard.com/api/catalog

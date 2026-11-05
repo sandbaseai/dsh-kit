@@ -1,5 +1,7 @@
-# dsh-plugin-industry-search — Search for companies within a specific industry.
-- name: '@sandbaseai/dsh-plugin-industry-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-industry-search
+      name: '@sandbaseai/dsh-plugin-industry-search'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

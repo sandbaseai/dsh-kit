@@ -1,5 +1,7 @@
-# dsh-plugin-web-search — Search the web and return results with titles, URLs, and snippets. Supports Google operators: site:, -site:, "quoted phrases", OR.
-- name: '@sandbaseai/dsh-plugin-web-search'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-web-search
+      name: '@sandbaseai/dsh-plugin-web-search'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

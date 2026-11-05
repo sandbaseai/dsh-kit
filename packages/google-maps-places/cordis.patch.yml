@@ -1,5 +1,7 @@
-# dsh-plugin-google-maps-places — Search for places on Google Maps by name, type, or location.
-- name: '@sandbaseai/dsh-plugin-google-maps-places'
-  config:
-    enabled: true
-    timeoutMs: 30000
+- insert:
+    - id: sandbase-kit-google-maps-places
+      name: '@sandbaseai/dsh-plugin-google-maps-places'
+      config:
+        enabled: true
+        toolPrefix: sandbase_
+        timeoutMs: 30000

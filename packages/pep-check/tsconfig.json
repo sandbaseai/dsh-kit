@@ -1,17 +1,6 @@
 {
-  "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "lib/types",
-    "composite": true
-  },
-  "include": ["src"],
-  "references": [
-    { "path": "../../../vendor/cordis" },
-    { "path": "../../../vendor/schemastery" },
-    { "path": "../../core/tools" },
-    { "path": "../../core/system-prompt" },
-    { "path": "../../web/web" },
-    { "path": "../shared" }
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "src/**/*.ts"
   ]
 }
