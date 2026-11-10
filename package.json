@@ -2,7 +2,7 @@
   "name": "dsh-plugins",
   "version": "0.1.0",
   "private": true,
-  "description": "100+ Cordis plugins for DeepSeek Harness \u2014 web search, social media, business intelligence, e-commerce, crypto, multimodal AI, and more.",
+  "description": "SandBase MCP connection bundle for DeepSeek Harness",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sandbaseai/dsh-kit.git"
@@ -11,7 +11,8 @@
     "build": "tsc -p tsconfig.build.json && node scripts/build.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "pack:plugins": "pnpm build && node scripts/pack.mjs"
+    "pack:plugins": "node scripts/pack.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs"
   },
   "engines": {
     "node": ">=22.19.0"

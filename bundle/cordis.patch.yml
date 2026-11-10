@@ -1,0 +1,11 @@
+- insert:
+    - id: sandbase-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: sandbase_api
+        transport: streamable-http
+        url: !!js process.env.SANDBASE_MCP_URL || 'https://api.sandbase.ai/v1/mcp'
+        headers:
+          Authorization: !!js "(() => { const key = process.env.SANDBASE_API_KEY; if (!key) throw new Error('Set SANDBASE_API_KEY in the DSH process environment'); return 'Bearer ' + key; })()"
+        toolCallTimeoutMs: 120000
+        failOnStartupError: true

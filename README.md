@@ -1,79 +1,61 @@
-# DSH Kit
+# SandBase Kit for DSH
 
-> 102 Cordis plugins for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+一个配置包，将 DeepSeek Harness 连接到 SandBase MCP。复用 DSH 自带的
+`@deepseek-ai/dsh-mcp-client`，通过少量通用工具按需发现和执行 SandBase 能力。
 
-DSH Kit 为 DeepSeek Harness 提供 102 个开箱即用的 Cordis 插件，覆盖网页搜索、社交媒体、商业情报、电商、加密货币、多模态 AI、插件商店等领域。
+## 安装
 
-## 从源码构建和安装
+需要包含 `@deepseek-ai/dsh-mcp-client` 的 DSH Desktop 或 Web 版本。
+本包按 Desktop 0.2.2-rc.1 的配置协议编写。
 
-需要 Node.js 22.19+ 和 pnpm 11.22.0。依赖来自公开 npm 包。
+在启动 DSH 的进程环境中配置 `SANDBASE_API_KEY`。可选的 `SANDBASE_MCP_URL`
+用于指定完整 MCP 地址，默认 `https://api.sandbase.ai/v1/mcp`。
+密钥通过环境变量读取，不写入插件包。
 
-```bash
-git clone https://github.com/sandbaseai/dsh-kit.git
-cd dsh-kit
-pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm pack:plugins
-pnpm test
+使用 Desktop 自带的 CLI 安装构建产物：
+
+```sh
+dsh plugin --profile desktop add -w ./sandbaseai-dsh-kit-0.2.0-preview.2.tgz
 ```
 
-构建产物位于 `dist/packages/`。使用 Desktop 自带的 `dsh` CLI 安装需要的包，例如：
-
-```bash
-dsh plugin --profile desktop add -w ./dist/packages/sandbaseai-dsh-plugin-web-search-0.1.0.tgz
-```
-
-Web 用户使用 `--profile web`，自定义 profile 使用其名称。每个工具包自带
-`dsh.bundle` 清单、Cordis patch、运行代码和类型声明，共享实现已打包到工具中。
-包内配置默认使用 `sandbase_` 工具名前缀，避免与 DSH 内置的 `web_search`、
-`web_fetch` 等工具冲突。直接使用插件 API 时可通过 `toolPrefix` 配置前缀，默认空字符串。
-
-这些本地 tarball 可用于安装验证，npm 发布状态需另行确认。
-
-`packages/dsh-store` 与独立的 `sandbaseai/dsh-plugin-store` 使用同一包名。
-已安装独立商店时，请跳过 Kit 中的同名商店包，避免覆盖。
-
-## 插件分类
-
-| 类别 | 数量 | 示例 |
-|------|------|------|
-| 🏪 插件商店 | 1 | `store_search`, `store_catalog`, `store_install` |
-| 🤖 DeepSeek Chat | 1 | `deepseek_chat`, `deepseek_reason`, `deepseek_code` |
-| 🌐 网页搜索 | 10 | `web_search`, `web_fetch`, `web_screenshot` |
-| 📱 社交媒体 | 16 | `twitter_search`, `instagram_profile`, `tiktok_video` |
-| 🏢 商业情报 | 12 | `company_search`, `company_enrich`, `pep_check` |
-| 🛒 电商 | 7 | `amazon_product`, `google_shopping`, `price_compare` |
-| 💰 金融 | 8 | `token_price`, `protocol_tvl`, `chain_tvl` |
-| 🗺️ 地图 | 5 | `google_maps_places`, `flight_status`, `weather_lookup` |
-| 🛠️ 开发工具 | 8 | `github_profile`, `email_validate`, `translate` |
-| 🎨 多模态 AI | 16 | `image_gen_flux`, `video_gen_kling`, `tts_elevenlabs` |
-| 📊 预测市场 | 5 | `polymarket_markets`, `kalshi_markets` |
-| 🔌 MCP 集成 | 10 | `mcp_github`, `mcp_slack`, `mcp_figma` |
-| 🔧 实用工具 | 3 | `structured_extract`, `google_search`, `serp_analyze` |
+重启对应 profile。在 macOS 中，通过 Finder 启动的应用可能无法读取终端的
+环境变量。应在已加载上述变量的 shell 中启动应用可执行文件，或使用宿主支持的
+安全凭据配置。仅在 `.zshrc` 中定义变量不能证明 Desktop 已读取它。
 
 ## 使用
 
-通过 `dsh plugin --profile <name> add -w <tarball>` 安装时，DSH 会加载包内的
-`cordis.patch.yml`。安装后重启对应 profile。构建与加载测试覆盖包结构和工具注册，
-实际数据查询及模型生成仍需有效凭据和逐项服务验证。
+连接后，DSH 注册形如 `mcp__sandbase_api__sandbase_discover` 的工具。
+服务端实际返回的工具列表决定可用能力。
 
-## 配置 API Key
+1. `sandbase_discover` 查找能力。
+2. `sandbase_inspect` 获取当前输入参数和价格。
+3. `sandbase_run` 执行选定能力。
+4. 异步任务通过 `sandbase_run_get` 获取状态和最终结果，避免重复提交。
 
-所有插件统一通过 Sandbase API 调用，只需一个 Key：
+`账户`、`历史运行`等工具由服务端提供。使用费按 SandBase 返回的定价执行。
+新增模型或 API 通过服务端目录发现，无需为每个能力另装插件。
 
-```bash
-export SANDBASE_API_KEY="your-sandbase-api-key"
+## 迁移
+
+原 Kit 的独立工具包作为旧实现保留。新接入包使用 `mcp__sandbase_api__` 命名空间，
+旧包的 `sandbase_` 工具可以暂时共存。确认统一连接可用后，在插件管理中逐个停用
+旧的搜索、网页读取和 Flux 工具包，避免模型选择旧实现。
+
+Plugin Store 用于浏览和安装 DSH 插件；managed-agents 用于 Agent 管理。
+它们与本包分别安装。
+
+## 验证范围
+
+配置打包检查与真实服务调用分别验证。通过安装或工具发现不能证明所有模型、
+数据 API 和媒体结果展示均可用。发布记录应列出实际完成的验证项。
+
+## 开发和打包
+
+```sh
+npm run check:bundle
+npm run pack:plugins
 ```
 
-## 开发
-
-```bash
-git clone git@github.com:sandbaseai/dsh-kit.git
-cd dsh-kit
-pnpm install
-pnpm build
-```
-
-## License
-
-MIT
+默认只打包 `bundle/` 中的 `@sandbaseai/dsh-kit`，输出到 `dist/bundle/`。
+`packages/` 保留旧工具源码，旧实现仍可使用 `pnpm build`、`pnpm typecheck` 和
+`pnpm test` 检查，默认打包流程不包含这些工具。
