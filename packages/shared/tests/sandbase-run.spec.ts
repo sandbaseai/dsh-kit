@@ -40,6 +40,17 @@ describe('runSandbaseModel', () => {
     expect((init.headers as Record<string, string>).Authorization).toBe('Bearer test-key')
   })
 
+  it('keeps empty strings listed in keepEmpty', async () => {
+    fetchMock.mockResolvedValueOnce(json({ id: 'r0', status: 'completed', outputs: [] }))
+    await runSandbaseModel(ctx, {
+      toolName: 'token_price',
+      model: 'coingecko/simple-price',
+      input: { symbols: 'btc,eth', ids: '', names: '', extra: '' },
+      keepEmpty: ['ids', 'names'],
+    })
+    const [, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(JSON.parse(String(init.body))).toEqual({ model: 'coingecko/simple-price', symbols: 'btc,eth', ids: '', names: '' })
+  })
   it('polls a pending run until it completes', async () => {
     fetchMock
       .mockResolvedValueOnce(json({ id: 'r2', status: 'pending', model: 'm' }, 202))

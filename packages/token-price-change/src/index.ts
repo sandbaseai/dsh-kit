@@ -44,6 +44,9 @@ interface Args {
 function toInput(args: Args): Record<string, unknown> {
   return {
     symbols: args.token.toLowerCase(),
+    // Clear the upstream ids/names defaults (bitcoin), which otherwise override symbols.
+    ids: '',
+    names: '',
     vs_currency: 'usd',
     price_change_percentage: '1h,24h,7d,30d,1y',
   }
@@ -77,6 +80,7 @@ export function apply(ctx: Context, config: Config = {}) {
           toolName: 'token_price_change',
           model: MODEL,
           input: toInput(args),
+          keepEmpty: ['ids', 'names'],
           timeoutMs: config.timeoutMs ?? 30000,
           signal: exec.signal,
         })

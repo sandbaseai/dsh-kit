@@ -42,6 +42,11 @@ export interface RunSandbaseModelOptions {
   model: string
   /** Input fields sent flat next to `model`; `undefined`, `null` and `''` are dropped. */
   input?: Record<string, unknown>
+  /**
+   * Input fields sent even when they are `''`, e.g. to clear an upstream
+   * default that would otherwise take precedence over another field.
+   */
+  keepEmpty?: string[]
   /** Overall budget for submit plus polling. */
   timeoutMs?: number
   /** First poll delay; later polls back off up to 5 s. */
@@ -54,8 +59,9 @@ const PENDING = new Set(['pending', 'queued', 'processing', 'running', 'starting
 const FAILED = new Set(['failed', 'timeout', 'canceled', 'cancelled', 'error'])
 const MAX_POLL_INTERVAL_MS = 5_000
 
-function stripEmpty(input: Record<string, unknown> = {}): Record<string, unknown> {
-  return Object.fromEntries(Object.entries(input).filter(([, value]) => value !== undefined && value !== null && value !== ''))
+function stripEmpty(input: Record<string, unknown> = {}, keepEmpty: string[] = []): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(input).filter(([key, value]) =>
+    value !== undefined && value !== null && (value !== '' || keepEmpty.includes(key))))
 }
 
 function errorText(error: unknown): string {
@@ -105,7 +111,7 @@ export async function runSandbaseModel(ctx: Context, options: RunSandbaseModelOp
     const headers = { Authorization: `Bearer ${apiKey}` }
     // Never retry the submit: a retried 5xx could start (and bill) a second run.
     const submitClient = createFetchClient({ baseUrl, timeoutMs, maxRetries: 0, defaultHeaders: headers })
-    let run = await submitClient.post<SandbaseRunResult>('/v1/run', { model, ...stripEmpty(options.input) }, signal)
+    let run = await submitClient.post<SandbaseRunResult>('/v1/run', { model, ...stripEmpty(options.input, options.keepEmpty) }, signal)
     checkTerminal(toolName, run)
     if (!run.id || !PENDING.has(String(run.status).toLowerCase())) return run
 
