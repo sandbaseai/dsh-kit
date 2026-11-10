@@ -1,0 +1,25 @@
+{
+  "name": "@sandbaseai/dsh-kit",
+  "version": "0.2.0-preview.2",
+  "description": "Connect DeepSeek Harness to the SandBase MCP gateway with one configuration bundle.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandbaseai/dsh-kit.git",
+    "directory": "bundle"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
