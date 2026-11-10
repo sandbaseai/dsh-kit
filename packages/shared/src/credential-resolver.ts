@@ -73,9 +73,9 @@ export async function resolveCredential(
   const envValue = process.env[envKey]
   if (envValue) return envValue
 
-  // Try SANDABASE_ prefixed
-  const sandbaseKey = `SANDABASE_${envKey}`
-  const sandbaseValue = process.env[sandbaseKey]
+  // Try SANDBASE_ prefixed, then the misspelled legacy SANDABASE_ prefix
+  const sandbaseKey = `SANDBASE_${envKey}`
+  const sandbaseValue = process.env[sandbaseKey] || process.env[`SANDABASE_${envKey}`]
   if (sandbaseValue) return sandbaseValue
 
   throw new Error(

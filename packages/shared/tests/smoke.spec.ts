@@ -45,8 +45,13 @@ describe('Plugin smoke tests', () => {
     expect(src).toContain('export function apply')
     expect(src).toContain('defineTool')
     if (dir !== 'dsh-store') {
-      expect(src).toContain('resolveCredential')
-      expect(src).toContain("'sandbase'")
+      // Either the shared SandBase helpers (which resolve the key themselves)
+      // or an explicit SandBase credential lookup.
+      const usesHelper = /\b(runSandbaseModel|sandbaseChat)\b/.test(src)
+      if (!usesHelper) {
+        expect(src).toContain('resolveCredential')
+        expect(src).toContain("'sandbase'")
+      }
     }
   })
 

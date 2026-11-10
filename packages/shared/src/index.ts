@@ -9,3 +9,14 @@ export { PluginError, handleUpstreamError, type PluginErrorCode } from './error-
 export { buildToolParams, schemaFromRegistry, type RegistryModelSchema } from './schema-utils.ts'
 export { createPlugin, type PluginDefinition, type PluginConfig } from './plugin-skeleton.ts'
 export { defineTool } from './define-tool.ts'
+export {
+  runSandbaseModel,
+  sandbaseChat,
+  SANDBASE_BASE_URL,
+  type SandbaseRunResult,
+  type SandbaseRunOutput,
+  type RunSandbaseModelOptions,
+  type SandbaseChatMessage,
+  type SandbaseChatOptions,
+  type SandbaseChatResult,
+} from './sandbase-run.ts'
