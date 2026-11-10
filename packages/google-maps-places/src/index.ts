@@ -1,7 +1,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool, createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, runSandbaseModel } from '@sandbaseai/dsh-plugin-shared'
 
 export const name = 'dsh_plugin_google_maps_places'
 export const inject = ['tools', 'web', 'systemPrompt'] as const
@@ -18,6 +18,23 @@ export const Config: z<Config> = z.object({
   enabled: z.boolean().default(true),
   timeoutMs: z.number().default(30000),
 })
+
+/** SandBase model / API id called by `google_maps_places`. */
+const MODEL = 'dataforseo/v3/serp/google/maps/live/advanced'
+
+/** Arguments of the `google_maps_places` tool. */
+interface Args {
+  query: string
+  location?: string
+  maxResults?: number
+}
+
+/** Map tool arguments to the input fields of {@link MODEL}. */
+function toInput(args: Args): Record<string, unknown> {
+  return {
+    keyword: args.location ? `${args.query} near ${args.location}` : args.query,
+  }
+}
 
 export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
@@ -36,26 +53,14 @@ export function apply(ctx: Context, config: Config = {}) {
         render: (_args, value) => [{ type: 'text', text: value }],
       },
       async execute(args, exec) {
-        try {
-          const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
-          const client = createFetchClient({
-            baseUrl: 'https://api.sandbase.ai',
-            timeoutMs: config.timeoutMs ?? 30000,
-            defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-          })
-          const params = new URLSearchParams()
-          for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
-            if (value !== undefined && value !== null && value !== '') {
-              params.append(key, String(value))
-            }
-          }
-          const qs = params.toString()
-          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), exec.signal)
-          return JSON.stringify(data, null, 2)
-        } catch (err) {
-          handleUpstreamError(err, 'google_maps_places')
-  throw new Error('unreachable')
-        }
+        const result = await runSandbaseModel(ctx, {
+          toolName: 'google_maps_places',
+          model: MODEL,
+          input: toInput(args),
+          timeoutMs: config.timeoutMs ?? 30000,
+          signal: exec.signal,
+        })
+        return JSON.stringify(result, null, 2)
       },
     }))
   })()

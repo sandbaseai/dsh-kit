@@ -1,7 +1,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool, createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, runSandbaseModel } from '@sandbaseai/dsh-plugin-shared'
 
 export const name = 'dsh_plugin_image_gen_dalle'
 export const inject = ['tools', 'web', 'systemPrompt'] as const
@@ -19,6 +19,28 @@ export const Config: z<Config> = z.object({
   timeoutMs: z.number().default(60000),
 })
 
+/** SandBase model / API id called by `image_gen_dalle`. */
+const MODEL = 'openai/gpt-image-2'
+
+/** Arguments of the `image_gen_dalle` tool. */
+interface Args {
+  prompt: string
+  size?: string
+  quality?: string
+  style?: string
+}
+
+const ASPECT: Record<string, string> = { '1024x1024': '1:1', '1792x1024': '16:9', '1024x1792': '9:16' }
+
+/** Map tool arguments to the input fields of {@link MODEL}. */
+function toInput(args: Args): Record<string, unknown> {
+  return {
+    prompt: args.style ? `${args.prompt} (style: ${args.style})` : args.prompt,
+    aspect_ratio: args.size ? ASPECT[args.size] : undefined,
+    quality: args.quality === 'hd' ? 'high' : 'medium',
+  }
+}
+
 export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
   return (async () => {
@@ -34,29 +56,17 @@ export function apply(ctx: Context, config: Config = {}) {
       },
       output: {
         schema: { type: 'string' },
-        render: (_args, _value) => [{ type: 'text', text: `Task submitted. Use the result endpoint to check completion.` }],
+        render: (_args, value) => [{ type: 'text', text: value }],
       },
       async execute(args, exec) {
-        try {
-          const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
-          const client = createFetchClient({
-            baseUrl: 'https://api.sandbase.ai',
-            timeoutMs: config.timeoutMs ?? 60000,
-            defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-          })
-          const params = new URLSearchParams()
-          for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
-            if (value !== undefined && value !== null && value !== '') {
-              params.append(key, String(value))
-            }
-          }
-          const qs = params.toString()
-          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), exec.signal)
-          return JSON.stringify(data, null, 2)
-        } catch (err) {
-          handleUpstreamError(err, 'image_gen_dalle')
-  throw new Error('unreachable')
-        }
+        const result = await runSandbaseModel(ctx, {
+          toolName: 'image_gen_dalle',
+          model: MODEL,
+          input: toInput(args),
+          timeoutMs: config.timeoutMs ?? 60000,
+          signal: exec.signal,
+        })
+        return JSON.stringify(result, null, 2)
       },
     }))
   })()

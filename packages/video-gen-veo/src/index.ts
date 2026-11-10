@@ -10,7 +10,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool, createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, runSandbaseModel } from '@sandbaseai/dsh-plugin-shared'
 
 /** Cordis plugin name used by loader diagnostics. */
 export const name = 'dsh_plugin_video_gen_veo'
@@ -34,10 +34,27 @@ export const Config: z<Config> = z.object({
   timeoutMs: z.number().default(30000),
 })
 
+/** SandBase model / API id called by `video_gen_veo`. */
+const MODEL = 'google/veo3.1/lite/text-to-video'
+
+/** Arguments of the `video_gen_veo` tool. */
+interface Args {
+  prompt: string
+  duration?: number
+}
+
+/** Map tool arguments to the input fields of {@link MODEL}. */
+function toInput(args: Args): Record<string, unknown> {
+  return {
+    prompt: args.prompt,
+    duration: args.duration !== undefined ? (args.duration <= 4 ? 4 : args.duration <= 6 ? 6 : 8) : undefined,
+  }
+}
+
 /**
  * Register the `video_gen_veo` tool with the harness tools service.
- * Resolves credentials, creates an HTTP client, and registers a
- * model-callable tool that proxies to the upstream API.
+ * The tool runs `google/veo3.1/lite/text-to-video` through SandBase `POST /v1/run`
+ * (see runSandbaseModel) and returns the run result as JSON.
  */
 export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
@@ -61,29 +78,17 @@ export function apply(ctx: Context, config: Config = {}) {
     },
       output: {
         schema: { type: 'string' },
-        render: (_args, _value) => [{ type: 'text', text: `Task submitted. Use the result endpoint to check completion.` }],
+        render: (_args, value) => [{ type: 'text', text: value }],
       },
       async execute(args, exec) {
-        try {
-          const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
-          const client = createFetchClient({
-            baseUrl: 'https://api.sandbase.ai',
-            timeoutMs: config.timeoutMs ?? 30000,
-            defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-          })
-          const params = new URLSearchParams()
-          for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
-            if (value !== undefined && value !== null && value !== '') {
-              params.append(key, String(value))
-            }
-          }
-          const qs = params.toString()
-          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), exec.signal)
-          return JSON.stringify(data, null, 2)
-        } catch (err) {
-          handleUpstreamError(err, 'video_gen_veo')
-  throw new Error('unreachable')
-        }
+        const result = await runSandbaseModel(ctx, {
+          toolName: 'video_gen_veo',
+          model: MODEL,
+          input: toInput(args),
+          timeoutMs: config.timeoutMs ?? 30000,
+          signal: exec.signal,
+        })
+        return JSON.stringify(result, null, 2)
       },
     }))
   })()

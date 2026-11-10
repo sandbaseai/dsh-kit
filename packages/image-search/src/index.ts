@@ -8,7 +8,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import z from '@deepseek-ai/schemastery'
 import type {} from '@deepseek-ai/dsh-web'
-import { defineTool, createFetchClient, resolveCredential, handleUpstreamError } from '@sandbaseai/dsh-plugin-shared'
+import { defineTool, runSandbaseModel } from '@sandbaseai/dsh-plugin-shared'
 
 /** Cordis plugin name used by loader diagnostics. */
 export const name = 'dsh_plugin_image_search'
@@ -32,10 +32,27 @@ export const Config: z<Config> = z.object({
   timeoutMs: z.number().default(30000),
 })
 
+/** SandBase model / API id called by `image_search`. */
+const MODEL = 'brave/images'
+
+/** Arguments of the `image_search` tool. */
+interface Args {
+  query: string
+  numResults?: number
+}
+
+/** Map tool arguments to the input fields of {@link MODEL}. */
+function toInput(args: Args): Record<string, unknown> {
+  return {
+    q: args.query,
+    count: args.numResults,
+  }
+}
+
 /**
  * Register the `image_search` tool with the harness tools service.
- * Resolves credentials, creates an HTTP client, and registers a
- * model-callable tool that proxies to the upstream API.
+ * The tool runs `brave/images` through SandBase `POST /v1/run`
+ * (see runSandbaseModel) and returns the run result as JSON.
  */
 export function apply(ctx: Context, config: Config = {}) {
   if (config.enabled === false) return
@@ -62,26 +79,14 @@ export function apply(ctx: Context, config: Config = {}) {
         render: (_args, value) => [{ type: 'text', text: value }],
       },
       async execute(args, exec) {
-        try {
-          const apiKey = await resolveCredential(ctx, 'sandbase', 'api_key')
-          const client = createFetchClient({
-            baseUrl: 'https://api.sandbase.ai',
-            timeoutMs: config.timeoutMs ?? 30000,
-            defaultHeaders: { Authorization: `Bearer ${apiKey}` },
-          })
-          const params = new URLSearchParams()
-          for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
-            if (value !== undefined && value !== null && value !== '') {
-              params.append(key, String(value))
-            }
-          }
-          const qs = params.toString()
-          const data = await client.get('/v1/run' + (qs ? '?' + qs : ''), exec.signal)
-          return JSON.stringify(data, null, 2)
-        } catch (err) {
-          handleUpstreamError(err, 'image_search')
-  throw new Error('unreachable')
-        }
+        const result = await runSandbaseModel(ctx, {
+          toolName: 'image_search',
+          model: MODEL,
+          input: toInput(args),
+          timeoutMs: config.timeoutMs ?? 30000,
+          signal: exec.signal,
+        })
+        return JSON.stringify(result, null, 2)
       },
     }))
   })()
