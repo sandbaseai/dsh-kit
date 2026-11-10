@@ -3,3 +3,5 @@ packages:
 
 linkWorkspacePackages: true
 autoInstallPeers: true
+allowBuilds:
+  esbuild: true
