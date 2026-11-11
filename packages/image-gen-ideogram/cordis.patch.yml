@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-image-gen-ideogram
-      name: '@sandbaseai/dsh-plugin-image-gen-ideogram'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

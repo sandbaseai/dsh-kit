@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-translate
-      name: '@sandbaseai/dsh-plugin-translate'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

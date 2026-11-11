@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-tts-elevenlabs
-      name: '@sandbaseai/dsh-plugin-tts-elevenlabs'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-linkedin-company
-      name: '@sandbaseai/dsh-plugin-linkedin-company'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

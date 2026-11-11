@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-flight-status
-      name: '@sandbaseai/dsh-plugin-flight-status'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

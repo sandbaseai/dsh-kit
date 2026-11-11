@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-youtube-search
-      name: '@sandbaseai/dsh-plugin-youtube-search'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

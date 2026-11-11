@@ -37,9 +37,9 @@ dsh plugin --profile desktop add -w ./sandbaseai-dsh-kit-0.2.0-preview.2.tgz
 
 ## 迁移
 
-原 Kit 的独立工具包作为旧实现保留。新接入包使用 `mcp__sandbase_api__` 命名空间，
-旧包的 `sandbase_` 工具可以暂时共存。确认统一连接可用后，在插件管理中逐个停用
-旧的搜索、网页读取和 Flux 工具包，避免模型选择旧实现。
+原 Kit 的独立工具包（v0.1.0）已废弃：它们调用的 `GET /v1/run` 已不可用。
+已安装旧包的用户应在插件管理中停用这些 `sandbase_` 工具包，改用本包的
+`mcp__sandbase_api__` 工具。
 
 Plugin Store 用于浏览和安装 DSH 插件；managed-agents 用于 Agent 管理。
 它们与本包分别安装。

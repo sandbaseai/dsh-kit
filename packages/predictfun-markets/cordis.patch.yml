@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-predictfun-markets
-      name: '@sandbaseai/dsh-plugin-predictfun-markets'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

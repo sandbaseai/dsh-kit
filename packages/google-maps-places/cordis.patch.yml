@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-google-maps-places
-      name: '@sandbaseai/dsh-plugin-google-maps-places'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

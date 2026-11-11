@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-avatar-heygen
-      name: '@sandbaseai/dsh-plugin-avatar-heygen'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

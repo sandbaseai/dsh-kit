@@ -8,20 +8,10 @@
     "url": "git+https://github.com/sandbaseai/dsh-kit.git"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node scripts/build.mjs",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
     "pack:plugins": "node scripts/pack.mjs",
     "check:bundle": "node scripts/check-bundle.mjs"
   },
   "engines": {
     "node": ">=22.19.0"
-  },
-  "packageManager": "pnpm@11.22.0",
-  "devDependencies": {
-    "@types/node": "^22.19.0",
-    "typescript": "~5.9.3",
-    "esbuild": "^0.25.12",
-    "vitest": "^3.2.4"
   }
 }

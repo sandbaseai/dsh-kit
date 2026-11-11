@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-email-validate
-      name: '@sandbaseai/dsh-plugin-email-validate'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

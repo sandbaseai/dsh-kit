@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-google-search
-      name: '@sandbaseai/dsh-plugin-google-search'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

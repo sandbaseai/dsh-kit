@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-kalshi-markets
-      name: '@sandbaseai/dsh-plugin-kalshi-markets'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

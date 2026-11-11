@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-twitter-followers
-      name: '@sandbaseai/dsh-plugin-twitter-followers'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

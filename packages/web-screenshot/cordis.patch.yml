@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-web-screenshot
-      name: '@sandbaseai/dsh-plugin-web-screenshot'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000
