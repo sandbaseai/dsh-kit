@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-youtube-transcript
-      name: '@sandbaseai/dsh-plugin-youtube-transcript'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

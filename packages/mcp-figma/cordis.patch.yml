@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-mcp-figma
-      name: '@sandbaseai/dsh-plugin-mcp-figma'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

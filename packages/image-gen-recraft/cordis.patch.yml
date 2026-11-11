@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-image-gen-recraft
-      name: '@sandbaseai/dsh-plugin-image-gen-recraft'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

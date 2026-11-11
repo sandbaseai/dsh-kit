@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-image-edit
-      name: '@sandbaseai/dsh-plugin-image-edit'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-structured-extract
-      name: '@sandbaseai/dsh-plugin-structured-extract'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

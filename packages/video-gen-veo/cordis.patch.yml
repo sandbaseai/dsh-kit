@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-video-gen-veo
-      name: '@sandbaseai/dsh-plugin-video-gen-veo'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

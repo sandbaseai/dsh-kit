@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-tiktok-video
-      name: '@sandbaseai/dsh-plugin-tiktok-video'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

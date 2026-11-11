@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-github-profile
-      name: '@sandbaseai/dsh-plugin-github-profile'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-web-fetch
-      name: '@sandbaseai/dsh-plugin-web-fetch'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

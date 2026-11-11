@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-amazon-reviews
-      name: '@sandbaseai/dsh-plugin-amazon-reviews'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-mcp-filesystem
-      name: '@sandbaseai/dsh-plugin-mcp-filesystem'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

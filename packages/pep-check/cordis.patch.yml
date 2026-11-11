@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-pep-check
-      name: '@sandbaseai/dsh-plugin-pep-check'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

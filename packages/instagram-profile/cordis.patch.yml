@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-instagram-profile
-      name: '@sandbaseai/dsh-plugin-instagram-profile'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

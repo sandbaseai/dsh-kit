@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-mcp-slack
-      name: '@sandbaseai/dsh-plugin-mcp-slack'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

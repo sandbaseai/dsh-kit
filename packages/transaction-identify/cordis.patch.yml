@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-transaction-identify
-      name: '@sandbaseai/dsh-plugin-transaction-identify'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-mcp-notion
-      name: '@sandbaseai/dsh-plugin-mcp-notion'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

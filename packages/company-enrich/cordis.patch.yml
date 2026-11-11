@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-company-enrich
-      name: '@sandbaseai/dsh-plugin-company-enrich'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

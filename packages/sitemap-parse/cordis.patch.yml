@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-sitemap-parse
-      name: '@sandbaseai/dsh-plugin-sitemap-parse'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

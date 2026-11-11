@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-employee-reviews
-      name: '@sandbaseai/dsh-plugin-employee-reviews'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

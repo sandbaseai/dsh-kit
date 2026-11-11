@@ -1,8 +1,0 @@
-- insert:
-    - id: sandbase-kit-deepseek-chat
-      name: '@sandbaseai/dsh-plugin-deepseek-chat'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 120000
-        defaultModel: deepseek-v4-pro

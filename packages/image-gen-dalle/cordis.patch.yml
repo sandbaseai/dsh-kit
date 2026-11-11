@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-image-gen-dalle
-      name: '@sandbaseai/dsh-plugin-image-gen-dalle'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 60000

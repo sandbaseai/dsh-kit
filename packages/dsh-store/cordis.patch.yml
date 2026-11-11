@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-dsh-store
-      name: '@sandbaseai/dsh-plugin-store'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        catalogUrl: https://dshpluginleaderboard.com/api/catalog

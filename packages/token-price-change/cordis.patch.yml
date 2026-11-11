@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-token-price-change
-      name: '@sandbaseai/dsh-plugin-token-price-change'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

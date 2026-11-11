@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-polymarket-positions
-      name: '@sandbaseai/dsh-plugin-polymarket-positions'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000

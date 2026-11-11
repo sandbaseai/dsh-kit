@@ -1,7 +1,0 @@
-- insert:
-    - id: sandbase-kit-serp-analyze
-      name: '@sandbaseai/dsh-plugin-serp-analyze'
-      config:
-        enabled: true
-        toolPrefix: sandbase_
-        timeoutMs: 30000
